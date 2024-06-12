@@ -17,7 +17,8 @@ const AddUser = () => {
                 "pincode":"",
                 "email":"",
                 "username":"",
-                "password":""
+                "password":"",
+                "confirmpassword":""
             }
         
     )
@@ -26,6 +27,7 @@ const AddUser = () => {
     }
     const readValue=()=>{
         console.log(data)
+        if(data.password == data.confirmpassword){
         axios.post("http://localhost:8086/add",data).then(
             (response)=>{
                 console.log(response.data)
@@ -36,6 +38,9 @@ const AddUser = () => {
                 }
             }
         )
+    }else{
+    alert("Password NoTMatching")
+}
     }
     return (
         <div>
@@ -115,7 +120,7 @@ const AddUser = () => {
                             </div>
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                                 <label htmlFor="" className="form-label">Confirm Password</label>
-                                <input type="password" name="" id="" className="form-control" />
+                                <input type="password"  id="" className="form-control" name='confirmpassword' value={data.confirmpassword} onChange={inputHandler}/>
                             </div>
                             
                             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
